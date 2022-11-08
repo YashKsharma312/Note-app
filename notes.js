@@ -1,23 +1,20 @@
 const fs=require('fs')
 const chalk=require('chalk')
 
-const addNote= (title,body)=> {
-const notes=loadNotes()
-//const duplicateNotes=notes.filter((note) => note.title==title)
-const duplicateNote=notes.find((note) => note.title==title)
-
-if(!duplicateNotes){
-    notes.push({
-        title: title,
-        body: body
-    })
-
-
-saveNotes(notes)
-console.log(chalk.bold.green('New note added!'))
-}else{
-    console.log(chalk.bold.red('Note Title taken!'))
-}}
+const addNote = (title, body) => {
+    const notes = loadNotes()
+    const duplicateNote = notes.find((note) => note.title === title)
+    if (!duplicateNote) { 
+        notes.push({
+            title: title,
+            body: body
+        })
+        saveNotes(notes)
+        console.log(chalk.green.inverse('New note added!'))
+    } else {
+        console.log(chalk.red.inverse('Note title taken!'))
+    }
+}
 
 const removeNote= (title) => {
       const notes=loadNotes()
